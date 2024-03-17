@@ -33,6 +33,7 @@ import Link from 'next/link';
 import { LoadingSpinner } from '@/components/ui/spinner';
 import { useStore } from 'zustand';
 import { useWasteStore } from '@/store/wasteState';
+import Loader from '@/components/loader';
 const Conversation = () => {
   const proModal = useProModal();
   const router = useRouter();
@@ -130,7 +131,9 @@ const Conversation = () => {
               className='col-span-12 lg:col-span-2 w-[30%] '
               disabled={isLoading}
               color='white'
-              onClick={() => setUrlImg('')}
+              onClick={() => {
+                setUrlImg(''), setInforTrash(false), setDataDetect([]);
+              }}
             >
               Thử Lại
             </Button>
@@ -156,7 +159,8 @@ const Conversation = () => {
                 </DialogTitle>
                 {dataDetect?.length == 0 ? (
                   <div className='mt-10'>
-                    <LoadingSpinner />
+                    {/* <LoadingSpinner /> */}
+                    <Loader />
                   </div>
                 ) : (
                   <>
@@ -194,7 +198,7 @@ const Conversation = () => {
                                   href={`/dictionary/${item?.dictionary?.id}/details`}
                                   className='text-green-400 mt-2 font-medium text-start '
                                 >
-                                  See more in dictionary
+                                  Xem thêm trong từ điển.
                                 </Link>
                               </div>
                             </AccordionContent>

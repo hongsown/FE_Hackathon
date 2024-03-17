@@ -11,6 +11,7 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import LeafletRoutingMachine from '@/components/LeafletRoutingMachine';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
+import Loader from '@/components/loader';
 const GoogleMap = () => {
   const [location, setLocation] = useState([]);
   const [userLocation, setUserLocation] = useState<[number, number]>([0, 0]);
@@ -113,6 +114,7 @@ const GoogleMap = () => {
       <div className='px-4 lg:px-8'>
         {userLocation[0] != 0 && (
           <MapContainer
+            style={{ zIndex: 1 }}
             center={[userLocation[0], userLocation[1]]}
             zoom={13}
             scrollWheelZoom={false}
@@ -122,6 +124,7 @@ const GoogleMap = () => {
               url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
             {/* <LeafletGeo /> */}
+
             {targetLocation[0] != 0 && (
               <LeafletRoutingMachine
                 userLocation={userLocation}

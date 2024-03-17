@@ -23,7 +23,7 @@ const LandingNavbar = () => {
         <h1
           className={cn('text-2xl font-bold dark:text-white', font.className)}
         >
-          Genius
+          LogiRecy
         </h1>
       </Link>
       <div className='flex gap-4'>

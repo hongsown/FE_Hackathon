@@ -2,16 +2,12 @@
 
 import { cn } from '@/lib/utils';
 import {
-  Code,
+  BookOpen,
   ImageIcon,
   LayoutDashboard,
-  MessageSquare,
-  Music,
-  Settings,
-  BookOpen,
   Map,
   Newspaper,
-  VideoIcon,
+  Settings,
 } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
@@ -22,10 +18,11 @@ const montserrat = Montserrat({ weight: '600', subsets: ['latin'] });
 interface SidebarProps {
   limitCount: number;
   isPro: boolean;
+  setOpen?: () => void;
 }
 const routes = [
   {
-    label: 'Dashboard',
+    label: 'Trang Chủ',
     icon: LayoutDashboard,
     href: '/dashboard',
     color: 'text-sky-500',
@@ -56,12 +53,12 @@ const routes = [
   },
 
   {
-    label: 'Settings',
+    label: 'Cài Đặt',
     icon: Settings,
     href: '/settings',
   },
 ];
-const Sidebar = ({ limitCount = 0, isPro = false }: SidebarProps) => {
+const Sidebar = ({ limitCount = 0, isPro = false, setOpen }: SidebarProps) => {
   let pathname = usePathname();
   return (
     <div className='flex flex-col  text-white py-4 h-full space-y-4 bg-[#111827]'>
@@ -71,7 +68,7 @@ const Sidebar = ({ limitCount = 0, isPro = false }: SidebarProps) => {
             <Image fill src='/logo.png' alt='logo' />
           </div>
           <div className={cn('text-2xl font-bold', montserrat.className)}>
-            Genius
+            LogiRecy
           </div>
         </Link>
         <div className='space-y-1 '>
@@ -85,6 +82,7 @@ const Sidebar = ({ limitCount = 0, isPro = false }: SidebarProps) => {
                   ? 'bg-white/10 text-white'
                   : 'text-zinc-400'
               )}
+              onClick={setOpen}
             >
               <div className='flex items-center flex-1'>
                 <route.icon className={cn('w-5 h-5 mr-3', route.color)} />
